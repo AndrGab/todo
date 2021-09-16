@@ -31,8 +31,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///todo.db")
-
+db = SQL(os.getenv("DATABASE_URL"))
 
 @app.route("/")
 @login_required
