@@ -58,9 +58,11 @@ def add():
 
         user = session.get("user_id")
         add = db.execute("INSERT INTO list (user_id, task) values (?,?);", user, task,)
-        # Redirect user to home page
-        flash('Added!')
-        return redirect("/")
+        tasks = db.execute(
+            "SELECT * FROM list WHERE user_id = ? AND active IS TRUE", user)
+        if len(tasks) == 0:
+            flash("Your ToDo list is empty")
+        return render_template("index.html", tasks=tasks)
 
     else:
         return redirect("/")
