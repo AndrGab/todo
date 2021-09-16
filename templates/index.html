@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}
+Index
+{% endblock %}
+{% block main %}
+<form action="/add" method="post">
+   <div class="form-group">
+      <div class="input-group mb-3">
+         <input type="text" class="form-control" name="task" placeholder="Add a task" aria-label="Add a task" aria-describedby="button-addon2">
+         <button class="btn btn-primary" type="submit" id="button-addon2">Add</button>
+      </div>
+   </div>
+</form>
+<table class="table table-hover table-striped">
+   <thead>
+      <tr >
+         <th style="width: 10%">Check</th>
+         <th>Task</th>
+      </tr>
+   </thead>
+   <tbody>
+      {% for task in tasks %}
+      <tr>
+         <td><input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" onclick="location.href = '/check/{{task.id}}';" {% if task.done ==1%} checked="" {%endif%}></td>
+         <td>   <label class="form-check-label" for="flexCheckChecked">
+            {% if task.done ==1%} <del> {%endif%}
+            {{task.task}}
+            {% if task.done ==1%} </del> {%endif%}
+            </label>
+         </td>
+      </tr>
+      {% endfor %}
+   </tbody>
+</table>
+{% endblock %}

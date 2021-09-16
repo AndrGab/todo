@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<table class="table table-striped">
+  <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Done</th>
+                <th>TimeStamp</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{task.task}}</td>
+                    <td>{% if task.done == 1%}Yes{%else%}No{%endif%}</td>
+                    <td>{{task.timestamp}}</td>
+                </tr>
+                {% endfor %}
+
+
+        </tbody>
+    </table>
+</table>
+{% endblock %}
