@@ -77,7 +77,7 @@ def history():
 @login_required
 def clear():
     user = session.get("user_id")
-    tasks = db.execute("UPDATE list SET active = 0 WHERE done = 1 AND user_id=?", user,)
+    tasks = db.execute("UPDATE list SET active = false WHERE done = true AND user_id=?", user,)
     flash("Cleared!")
     return redirect ("/")
 
@@ -182,14 +182,14 @@ def check(id):
     row = len(task)
     if row >= 1:
         if task[0]["done"] == 0:
-            db.execute("UPDATE list SET done = 1 WHERE id=?", id,)
+            db.execute("UPDATE list SET done = true WHERE id=?", id,)
         else:
-            db.execute("UPDATE list SET done = 0 WHERE id=?", id,)
+            db.execute("UPDATE list SET done = false WHERE id=?", id,)
 
-        tasks = db.execute("SELECT * FROM list WHERE active=1 and user_id=?", user)
+        tasks = db.execute("SELECT * FROM list WHERE active=true and user_id=?", user)
         return render_template("index.html", tasks=tasks)
     else:
-        tasks = db.execute("SELECT * FROM list WHERE active=1 and user_id=?", user)
+        tasks = db.execute("SELECT * FROM list WHERE active=true and user_id=?", user)
         flash("Task Error")
         return render_template("index.html", tasks=tasks)
 
