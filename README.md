@@ -14,7 +14,7 @@ To clean the actual list, just click on the Clear Checked Button.
     <img alt="Made by" src="https://img.shields.io/badge/made%20by-Andre%20Gabriel-ff69b4?logo=linkedin">
   </a>
 </p>
-https://checkify.com/blog/what-is-a-todo-list/
+
 
 ## What is a ToDo List?
 What is a ToDo List? The definition is a simple one.
